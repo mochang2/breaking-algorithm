@@ -29,14 +29,11 @@ def solution(citations):
 
         if len(citations[mid:]) == citations[mid]:
             answer = citations[mid]
-            flag = 0
             break
         elif len(citations[mid:]) > citations[mid]:
             left = mid + 1
         else:
             right = mid - 1
-    print(left)
-    print(right)
 
     if right < 0:
         return min(len(citations), citations[0])
