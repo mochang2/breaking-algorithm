@@ -29,22 +29,22 @@ def solution(board, moves):
     answer = 0
     result_stack=[]
     n = len(board)
-    n_minus_height_of_column = [0]*n  #counts the number of zero for each column
+    n_minus_height_of_column = [-1]*n  #counts the number of zero for each column
     
     #i traces row, j traces column
     #board[i][j]
     for i in range(n):
         for j in range(n):
-            if board[i][j] != 0 and n_minus_height_of_column[j] == 0:
+            if board[i][j] != 0 and n_minus_height_of_column[j] == -1:
                 n_minus_height_of_column[j] = i
-
+    
     """for i in n_minus_height_of_column:
         print(i)"""
 
     for j in moves:
         if n_minus_height_of_column[j-1] != n: # if they are same, that column is empty
             result_stack.append(board[n_minus_height_of_column[j-1]][j-1])
-            #board[n_minus_height_of_column[j-1]][j-1] = 0
+            #board[n_minus_height_of_column[j-1]][j-1] = 0 #no need
             n_minus_height_of_column[j-1] += 1
         if len(result_stack) >= 2:
             if result_stack[-2] == result_stack[-1]:
@@ -54,11 +54,30 @@ def solution(board, moves):
         
     return answer
 
+#advanced
+"""
+def solution(board, moves):
+    stacklist = []
+    answer = 0
 
-input1=[[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]] #square input
+    for i in moves:
+        for j in range(len(board)):
+            if board[j][i-1] != 0:
+                stacklist.append(board[j][i-1])
+                board[j][i-1] = 0
+
+                if len(stacklist) > 1:
+                    if stacklist[-1] == stacklist[-2]:
+                        stacklist.pop(-1)
+                        stacklist.pop(-1)
+                        answer += 2     
+                break
+
+    return answer
+"""
+
+input1=[[0,0,0,0,2],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]] #square input
 input2=[1,5,3,5,1,2,1,4]
 
-print(solution(input1,input2))
 
-for i in input1:
-    print(i)
+print(solution(input1,input2))
