@@ -1,75 +1,75 @@
-﻿////DFS using recursive
-//#include <iostream>
-//#include <vector>
-//#include <string>
-//#include <algorithm>
-//
-//using namespace std;
-//
-////(dcolumn, drow)-> up, right, down, left separately
-//int dcolumn[4] = { 0,1,0,-1 };
-//int drow[4] =	 { -1,0,1,0 };
-//string arr[25];
-//bool visited[25][25] = { false, };
-//vector<int> result;
-//int area;
-//
-//void dfs(int row, int column, int n)
-//{
-//	visited[row][column] = true;
-//	area++;
-//
-//	for (int k = 0; k < 4; k++)
-//	{
-//		int newRow = row + drow[k];
-//		int newColumn = column + dcolumn[k];
-//
-//		if (newRow >= 0 && newRow < n && newColumn >= 0 && newColumn < n)
-//		{
-//			if (arr[newRow][newColumn] == '1' && visited[newRow][newColumn] == false)
-//			{
-//				dfs(newRow, newColumn, n);
-//			}
-//		}
-//	}
-//}
-//
-//int main()
-//{
-//	int i = 0, j = 0;
-//	int n = 0;
-//	//cout << "input the size N : ";
-//	cin >> n;
-//	//cout << "\n";
-//	
-//	for (i = 0; i < n; i++)
-//	{
-//		cin >> arr[i];
-//	}
-//	
-//	for (i = 0; i < n; i++)
-//	{
-//		for (j = 0; j < n; j++)
-//		{
-//			if (arr[i][j] == '1' && visited[i][j] == false)
-//			{
-//				area = 0;
-//				dfs(i, j, n);
-//				result.push_back(area);
-//			}
-//		}
-//	}
-//
-//	sort(result.begin(), result.end());
-//
-//	cout << result.size() << endl;
-//	for (i = 0; i < result.size(); i++)
-//	{
-//		cout << result[i] << endl;
-//	}
-//
-//	return 0;
-//}
+﻿//DFS using recursive
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+//(dcolumn, drow)-> up, right, down, left separately
+int dcolumn[4] = { 0,1,0,-1 };
+int drow[4] =	 { -1,0,1,0 };
+string arr[25];
+bool visited[25][25] = { false, };
+vector<int> result;
+int area;
+
+void dfs(int row, int column, int n)
+{
+	visited[row][column] = true;
+	area++;
+
+	for (int k = 0; k < 4; k++)
+	{
+		int newRow = row + drow[k];
+		int newColumn = column + dcolumn[k];
+
+		if (newRow >= 0 && newRow < n && newColumn >= 0 && newColumn < n)
+		{
+			if (arr[newRow][newColumn] == '1' && visited[newRow][newColumn] == false)
+			{
+				dfs(newRow, newColumn, n);
+			}
+		}
+	}
+}
+
+int main()
+{
+	int i = 0, j = 0;
+	int n = 0;
+	//cout << "input the size N : ";
+	cin >> n;
+	//cout << "\n";
+	
+	for (i = 0; i < n; i++)
+	{
+		cin >> arr[i];
+	}
+	
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			if (arr[i][j] == '1' && visited[i][j] == false)
+			{
+				area = 0;
+				dfs(i, j, n);
+				result.push_back(area);
+			}
+		}
+	}
+
+	sort(result.begin(), result.end());
+
+	cout << result.size() << endl;
+	for (i = 0; i < result.size(); i++)
+	{
+		cout << result[i] << endl;
+	}
+
+	return 0;
+}
 
 
 ////BFS using queue
